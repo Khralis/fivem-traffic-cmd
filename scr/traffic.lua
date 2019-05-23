@@ -3,7 +3,7 @@ RegisterCommand("traffic", function(source,args,rawCommand)
 Str = tostring(args[1])
 tState = string.lower(Str)
 if tState == "off" then
-  TriggerEvent("chatMessage", "^3^*Traffic is now " .. tState)
+  TriggerEvent('chat:addMessage', {color = {239, 167, 0},multiline = true, args = {"Traffic is now " .. tState .. "."}})
   Citizen.CreateThread(function()
   while tState == "off"
     do
@@ -16,14 +16,12 @@ if tState == "off" then
       SetGarbageTrucks(0)
       SetRandomBoats(0)
       Citizen.Wait(5)
-      if (chatMessage) then break
     end
+    end)
+  elseif tState == "on" then
+    tState = "on"
+    TriggerEvent('chat:addMessage', {color = {0, 188, 69},multiline = true, args = {"Traffic is now " .. tState .. "."}})
+  elseif tState ~= ("on" or "off") then
+    TriggerEvent('chat:addMessage', {color = {255, 45, 45},multiline = true, args = {"Syntax is incorrcect [/traffic <on | off>]" .. " Your Input: " .. tState}})
   end
   end)
-elseif tState == "on" then
-  tState = "on"
-  TriggerEvent("chatMessage", "^2^*Traffic is now " .. tState)
-elseif tState ~= ("on" or "off") then
-  TriggerEvent("chatMessage", "^1^*Syntax is incorrcect [/traffic <on | off>]" .. " Your Input: " .. tState)
-end
-end)
