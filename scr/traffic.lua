@@ -2,6 +2,10 @@
 RegisterCommand("traffic", function(source,args,rawCommand)
 Str = tostring(args[1])
 tState = string.lower(Str)
+TriggerServerEvent("traffic", table.concat(args, " "))
+end)
+RegisterNetEvent("doTraffic")
+AddEventHandler("doTraffic", function()
 if tState == "off" then
   TriggerEvent('chat:addMessage', {color = {239, 167, 0},multiline = true, args = {"Traffic is now " .. tState .. "."}})
   Citizen.CreateThread(function()
