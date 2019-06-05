@@ -9,6 +9,8 @@ Syntax
 
 Invalid syntax will display an error and renable traffic / peds.
 
-TODO:
+Toggleable permission Support added.
 
-Add togglable permission support
+Make sure execute /cfg/traffic-cmd.cfg in your server config like so
+
+exec /resources/fivem-traffic-cmd-master/cfg/traffic-cmd.cfg 
